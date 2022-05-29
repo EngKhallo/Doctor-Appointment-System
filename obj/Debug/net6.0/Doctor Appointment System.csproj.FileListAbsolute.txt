@@ -1,0 +1,27 @@
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\appsettings.json
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Doctor Appointment System.exe
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Doctor Appointment System.deps.json
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Doctor Appointment System.runtimeconfig.json
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Doctor Appointment System.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Doctor Appointment System.pdb
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.AssemblyInfo.cs
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\scopedcss\bundle\Doctor Appointment System.styles.css
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.csproj.CopyComplete
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\refint\Doctor Appointment System.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.pdb
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.genruntimeconfig.cache
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\ref\Doctor Appointment System.dll
