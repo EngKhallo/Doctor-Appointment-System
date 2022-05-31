@@ -25,3 +25,11 @@ C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor App
 C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.pdb
 C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\Doctor Appointment System.genruntimeconfig.cache
 C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\obj\Debug\net6.0\ref\Doctor Appointment System.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Npgsql.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Admin\Desktop\IT Learning\FullStack Bootcamp\Backend\ASP.NET\Doctor Appointment System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll

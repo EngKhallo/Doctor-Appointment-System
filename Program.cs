@@ -1,4 +1,10 @@
+using Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppointmentsDbContext>(config => 
+                config.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
 // Add services to the container.
 
