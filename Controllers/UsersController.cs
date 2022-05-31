@@ -42,4 +42,25 @@ public class UsersController : ControllerBase
 
         return Created("", user);
     }
+
+    // PUT /users/5
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, [FromBody] User user)
+    {
+        var targetUser = _context.Users.Find(id);
+        if (targetUser is null)
+        {
+            return BadRequest();
+        }
+
+        targetUser.FullName = user.FullName;
+        targetUser.Email = user.Email;
+        targetUser.Address = user.Address;
+        targetUser.Gender = user.Gender;
+        
+        _context.Users.Update(targetUser);
+        _context.SaveChanges();
+
+        return NoContent();
+    }
 }
