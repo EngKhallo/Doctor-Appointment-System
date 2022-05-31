@@ -57,10 +57,27 @@ public class UsersController : ControllerBase
         targetUser.Email = user.Email;
         targetUser.Address = user.Address;
         targetUser.Gender = user.Gender;
-        
+
         _context.Users.Update(targetUser);
         _context.SaveChanges();
 
         return NoContent();
     }
+
+    // DELETE /users/5
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var user = _context.Users.Find(id);
+
+        if(user is null){
+            return BadRequest();
+        }
+
+        _context.Users.Remove(user);
+        _context.SaveChanges();
+
+        return NoContent();
+    }
+
 }
