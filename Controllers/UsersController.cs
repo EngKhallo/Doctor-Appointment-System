@@ -16,7 +16,7 @@ public class UsersController : ControllerBase
     [HttpGet]
     public IActionResult GetAll()
     {
-        var users = _context.Users.ToList();
+        var users = _context.Users.OrderBy(u => u.Id).ToList();
         return Ok(users);
     }
 
