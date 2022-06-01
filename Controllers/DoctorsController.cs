@@ -1,4 +1,5 @@
 using Data;
+using Doctor_Appointment_System.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Doctor_Appointment_System.Controllers;
@@ -31,6 +32,15 @@ public class DoctorsController : ControllerBase
         }
 
         return Ok(doctor);
+    }
+
+    [HttpPost]
+    public IActionResult Add([FromBody] Doctor doctor)
+    {
+        _context.Doctors.Add(doctor);
+        _context.SaveChanges();
+
+        return Created("", doctor);
     }
 
 }
