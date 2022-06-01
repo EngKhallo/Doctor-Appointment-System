@@ -17,9 +17,20 @@ public class DoctorsController : ControllerBase
     [HttpGet]
     public IActionResult GetAll()
     {
-        var doctors = _context.Doctors.ToList();
+        var doctors = _context.Doctors.OrderBy(d => d.Id).ToList();
         return Ok(doctors);
     }
 
-    // POST: Doctors
+    [HttpGet("{id}")]
+    public IActionResult GetSingle(int id)
+    {
+        var doctor = _context.Doctors.Find(id);
+        if (doctor is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(doctor);
+    }
+
 }
