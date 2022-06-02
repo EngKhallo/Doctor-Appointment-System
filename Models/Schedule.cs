@@ -6,7 +6,7 @@ namespace Doctor_Appointment_System.Models
         public DayOfWeek Day { get; set; } // pre-made enum 
         public string Location { get; set; } = "";
         public int DoctorId { get; set; }
-        public Doctor Doctor { get; set; } = new();
+        public Doctor? Doctor { get; set; }
         public bool IsAvailable { get; set; }
         public DateTime CreatedAt { get; set; }
     }
