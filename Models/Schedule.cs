@@ -8,6 +8,7 @@ namespace Doctor_Appointment_System.Models
         public int DoctorId { get; set; }
         public Doctor? Doctor { get; set; }
         public bool IsAvailable { get; set; }
+        public ICollection<Timeslot> TimeSlots { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }
