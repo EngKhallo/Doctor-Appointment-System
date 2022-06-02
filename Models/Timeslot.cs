@@ -3,9 +3,9 @@ namespace Doctor_Appointment_System.Models;
     {
         public int Id { get; set; }
         public int ScheduleId { get; set; }
-        public Schedule Schedule { get; set; } = new();
-        public TimeOnly StartTime { get; set; }
-        public TimeOnly EndTime { get; set; }
+        public Schedule? Schedule { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
         public string Description { get; set; }= "";
         public int MaxAppointments { get; set; }
         public DateTime CreatedAt { get; set; }
