@@ -3,10 +3,11 @@ using ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Doctor_Appointment_System.Models;
 using Doctor_Appointment_System.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Controllers;
 [Route("[controller]")]
-
+[ApiController]
 public class SchedulesController : ControllerBase
 {
     private readonly AppointmentsDbContext _context;
@@ -19,7 +20,10 @@ public class SchedulesController : ControllerBase
     {
         // only show the logged in Doctor's Schedules
         var doctorId = 2; // TODO: Get the actual doctorId from the session
-        var schedules = _context.Schedules.Where(s => s.DoctorId == doctorId).ToList();
+        var schedules = _context.Schedules.
+                    Include(s => s.TimeSlots)
+                    .Where(s => s.DoctorId == doctorId)
+                    .ToList();
 
         return Ok(schedules);
     }
@@ -42,10 +46,35 @@ public class SchedulesController : ControllerBase
         return Created("", schedule);
     }
 
+    // PUT /schedules/{id}
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, [FromBody] ModifyScheduleViewModel viewModel)
+    {
+        var schedule = _context.Schedules.Find(id);
+        if (schedule is null)
+        {
+            return BadRequest("Invalid Schedule");
+        }
+
+        schedule.Location = viewModel.Location;
+        schedule.Day = viewModel.Day;
+        schedule.IsAvailable = viewModel.IsAvailable;
+
+       _context.SaveChanges();
+
+       return NoContent(); 
+    }
+
     // POST /schedules/{id}/timeslots
     [HttpPost("{id}/timeslots")]
     public IActionResult AddTimeSlot(int id, [FromBody] TimeSlotViewModel viewModel)
     {
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         var schedule = _context.Schedules.Find(id);
         if (schedule is null)
         {
@@ -54,8 +83,8 @@ public class SchedulesController : ControllerBase
 
         var timeslot = new Timeslot
         {
-            StartTime =TimeOnly.FromTimeSpan(viewModel.StartTime),
-            EndTime =  TimeOnly.FromTimeSpan(viewModel.EndTime),
+            StartTime = viewModel.StartTime,
+            EndTime = viewModel.EndTime,
             Description = viewModel.Description,
             MaxAppointments = viewModel.MaxAppointments,
             ScheduleId = schedule.Id,
