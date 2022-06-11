@@ -55,6 +55,7 @@ public class SchedulesController : ControllerBase
         {
             return BadRequest("Invalid Schedule");
         }
+        // Todo : Only owner of the schedule can update the schedule
 
         schedule.Location = viewModel.Location;
         schedule.Day = viewModel.Day;
@@ -62,7 +63,7 @@ public class SchedulesController : ControllerBase
 
        _context.SaveChanges();
 
-       return NoContent(); 
+       return Ok(); 
     }
 
     // POST /schedules/{id}/timeslots
@@ -96,4 +97,6 @@ public class SchedulesController : ControllerBase
 
         return Created("", timeslot);
     }
+
+
 }
