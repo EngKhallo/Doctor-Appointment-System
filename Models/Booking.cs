@@ -6,7 +6,7 @@ public class Booking
     public User? User { get; set; }
     public DateTime AppointmentTime { get; set; }
     public int TimeslotId { get; set; }
-    public Timeslot Timeslot { get; set; } = new();
+    public Timeslot Timeslot { get; set; } = null!;
     public decimal PaidAmount { get; set; }
     public decimal Commission { get; set; }
     public decimal DoctorRevenue { get; set; }

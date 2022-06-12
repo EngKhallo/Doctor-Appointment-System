@@ -3,7 +3,7 @@ namespace Doctor_Appointment_System.Models;
     {
         public int Id { get; set; }
         public int ScheduleId { get; set; }
-        public Schedule? Schedule { get; set; }
+        public Schedule Schedule { get; set; } = null!;
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public string Description { get; set; }= "";
