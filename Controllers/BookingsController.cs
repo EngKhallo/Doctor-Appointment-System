@@ -1,9 +1,12 @@
 using Data;
+using Doctor_Appointment_System.Models;
+using Doctor_Appointment_System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Doctor_Appointment_System.Controllers;
 [Route("[controller]")]
+[ApiController]
 public class BookingsController : ControllerBase
 {
     private readonly AppointmentsDbContext _context;
@@ -23,5 +26,43 @@ public class BookingsController : ControllerBase
         // multithreading : asynchronous programming
 
         return Ok(bookings);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Add([FromBody] BookingViewModel ViewModel)
+    {
+        var timeSlot = await _context.Timeslots
+        .Include(ts => ts.Schedule).ThenInclude(s => s.Doctor)
+        .SingleOrDefaultAsync(ts => ts.Id == ViewModel.TimeSlotId);
+        if (timeSlot == null)
+        {
+            return BadRequest("Selected Time-slot couldn't be recognized");
+        }
+
+        var ticketPrice = timeSlot.Schedule.Doctor.TicketPrice;
+        var Rate = 0.02m; // rate per person
+        var Commission = ticketPrice * Rate;
+
+        // TODO : Add real payment gateway (eDahab, Zaad)
+
+        var transactionId = new Random().Next(10_000, 999_999);
+        var booking = new Booking
+        {
+            AppointmentTime = ViewModel.AppointmentTime,
+            IsCompleted = false,
+            UserId = 3, // TODO : Get the userId from session(logged in user)
+            CreatedAt = DateTime.UtcNow,
+            TransactionId = $"TR{transactionId}",
+            PaidAmount = ticketPrice,
+            Commission = Commission,
+            DoctorRevenue = ticketPrice - Commission,
+            PaymentMethod = ViewModel.PaymentMethod,
+            TimeslotId = timeSlot.Id,
+        };
+
+        await _context.Bookings.AddAsync(booking);
+        await _context.SaveChangesAsync();
+
+        return Created("", booking);
     }
 }
