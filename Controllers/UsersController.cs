@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Doctor_Appointment_System.Controllers;
 // controller route/path
-[Route("/api/v1/[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
+
 public class UsersController : ControllerBase
 {
     private readonly AppointmentsDbContext _context;
