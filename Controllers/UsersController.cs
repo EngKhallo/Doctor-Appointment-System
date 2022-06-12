@@ -1,10 +1,12 @@
 using Data;
 using Doctor_Appointment_System.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Doctor_Appointment_System.Controllers;
 // controller route/path
-[Route("[controller]")]
+[Route("/api/v1/[controller]")]
+[ApiController]
 public class UsersController : ControllerBase
 {
     private readonly AppointmentsDbContext _context;
@@ -14,17 +16,17 @@ public class UsersController : ControllerBase
     }
     // GET /users
     [HttpGet]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        var users = _context.Users.OrderBy(u => u.Id).ToList();
+        var users =await _context.Users.OrderBy(u => u.Id).ToListAsync();
         return Ok(users);
     }
 
     // Get /Users/5
     [HttpGet("{id}")]
-    public IActionResult GetUser(int id)
+    public async Task<IActionResult> GetUser(int id)
     {
-        var user = _context.Users.Find(id);
+        var user =await _context.Users.FindAsync(id);
         if (user is null)
         {
             return NotFound();
@@ -35,19 +37,19 @@ public class UsersController : ControllerBase
 
     // Post:Users
     [HttpPost]
-    public IActionResult Add([FromBody] User user)
+    public async Task<IActionResult> Add([FromBody] User user)
     {
-        _context.Users.Add(user); // saves data to the pc memory
-        _context.SaveChanges(); // saves changes to the Database
+        await _context.Users.AddAsync(user); // saves data to the pc memory
+        await _context.SaveChangesAsync(); // saves changes to the Database
 
         return Created("", user);
     }
 
     // PUT /users/5
     [HttpPut("{id}")]
-    public IActionResult Update(int id, [FromBody] User user)
+    public async Task<IActionResult> Update(int id, [FromBody] User user)
     {
-        var targetUser = _context.Users.Find(id);
+        var targetUser =await _context.Users.FindAsync(id);
         if (targetUser is null)
         {
             return BadRequest();
@@ -59,23 +61,23 @@ public class UsersController : ControllerBase
         targetUser.Gender = user.Gender;
 
         _context.Users.Update(targetUser);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return NoContent();
     }
 
     // DELETE /users/5
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var user = _context.Users.Find(id);
+        var user = await _context.Users.FindAsync(id);
 
         if(user is null){
             return BadRequest();
         }
 
         _context.Users.Remove(user);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return NoContent();
     }
