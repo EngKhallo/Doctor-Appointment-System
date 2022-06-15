@@ -6,7 +6,7 @@ using Doctor_Appointment_System.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Controllers;
-[Route("[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
 public class SchedulesController : ControllerBase
 {
@@ -16,14 +16,14 @@ public class SchedulesController : ControllerBase
         _context = context;
     }
     [HttpGet]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
         // only show the logged in Doctor's Schedules
         var doctorId = 2; // TODO: Get the actual doctorId from the session
-        var schedules = _context.Schedules.
+        var schedules =await _context.Schedules.
                     Include(s => s.TimeSlots)
                     .Where(s => s.DoctorId == doctorId)
-                    .ToList();
+                    .ToListAsync();
 
         return Ok(schedules);
     }
@@ -90,6 +90,7 @@ public class SchedulesController : ControllerBase
             MaxAppointments = viewModel.MaxAppointments,
             ScheduleId = schedule.Id,
             CreatedAt = DateTime.UtcNow,
+            Schedule = schedule
         };
 
         _context.Timeslots.Add(timeslot);
