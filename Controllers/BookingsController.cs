@@ -1,11 +1,12 @@
 using Data;
 using Doctor_Appointment_System.Models;
 using Doctor_Appointment_System.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Doctor_Appointment_System.Controllers;
-[Route("[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
 public class BookingsController : ControllerBase
 {
@@ -33,10 +34,21 @@ public class BookingsController : ControllerBase
     {
         var timeSlot = await _context.Timeslots
         .Include(ts => ts.Schedule).ThenInclude(s => s.Doctor)
+        .Include(ts => ts.Bookings)
         .SingleOrDefaultAsync(ts => ts.Id == ViewModel.TimeSlotId);
         if (timeSlot == null)
         {
             return BadRequest("Selected Time-slot couldn't be recognized");
+        }
+
+        if (ViewModel.AppointmentTime < DateTime.Today)
+        {
+            return BadRequest("Selected Appointment-time can't be in the past time!😒");
+        }
+
+        if (ViewModel.AppointmentTime.DayOfWeek != timeSlot.Schedule.Day)
+        {
+            return BadRequest("Doctor is not available at the selected day! 😁");
         }
 
         var ticketPrice = timeSlot.Schedule.Doctor.TicketPrice;
@@ -45,10 +57,11 @@ public class BookingsController : ControllerBase
 
         // TODO : Add real payment gateway (eDahab, Zaad)
 
+
         var transactionId = new Random().Next(10_000, 999_999);
         var booking = new Booking
         {
-            AppointmentTime = ViewModel.AppointmentTime,
+            AppointmentTime =new DateTime(ViewModel.AppointmentTime.Ticks, DateTimeKind.Utc),
             IsCompleted = false,
             UserId = 3, // TODO : Get the userId from session(logged in user)
             CreatedAt = DateTime.UtcNow,
