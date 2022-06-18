@@ -18,14 +18,15 @@ builder.Services.AddAuthentication("Bearer")
                 .AddJwtBearer(config =>
                 {
                     config.RequireHttpsMetadata = false;
-                    
-                    var KeyInput = "khalidka";
+
+                    var KeyInput = "random_text_with_atleast_32_chars";
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KeyInput));
 
-                    config.TokenValidationParameters = new TokenValidationParameters {
+                    config.TokenValidationParameters = new TokenValidationParameters
+                    {
                         ValidateIssuer = true,
                         ValidIssuer = "MyAPI",
-                        ValidateAudience = true,    
+                        ValidateAudience = true,
                         ValidAudience = "MyFrontendApp",
                         ValidateLifetime = true, // Expiration
                         IssuerSigningKey = key
