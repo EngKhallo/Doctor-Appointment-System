@@ -53,6 +53,11 @@ public class BookingsController : ControllerBase
             return BadRequest("Doctor is not available at the selected day! 😢🤷‍♂️");
         }
 
+        if (timeSlot.MaxAppointments <= timeSlot.Bookings.Count)
+        {
+            return BadRequest("Wu kaa buuxa maanta, Sorry!😥");
+        }
+
         var ticketPrice = timeSlot.Schedule.Doctor.TicketPrice;
         var Rate = 0.02m; // rate per person
         var Commission = ticketPrice * Rate;
@@ -63,7 +68,7 @@ public class BookingsController : ControllerBase
         var transactionId = new Random().Next(10_000, 999_999);
         var booking = new Booking
         {
-            AppointmentTime =new DateTime(ViewModel.AppointmentTime.Ticks, DateTimeKind.Utc),
+            AppointmentTime = new DateTime(ViewModel.AppointmentTime.Ticks, DateTimeKind.Utc),
             IsCompleted = false,
             UserId = 3, // TODO : Get the userId from session(logged in user)
             CreatedAt = DateTime.UtcNow,
