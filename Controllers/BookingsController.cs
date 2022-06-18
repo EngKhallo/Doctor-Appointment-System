@@ -17,6 +17,7 @@ public class BookingsController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAll() // Task = void
     {
         var bookings = await _context.Bookings.ToListAsync();
@@ -30,6 +31,7 @@ public class BookingsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Add([FromBody] BookingViewModel ViewModel)
     {
         var timeSlot = await _context.Timeslots
@@ -48,7 +50,7 @@ public class BookingsController : ControllerBase
 
         if (ViewModel.AppointmentTime.DayOfWeek != timeSlot.Schedule.Day)
         {
-            return BadRequest("Doctor is not available at the selected day! 😁");
+            return BadRequest("Doctor is not available at the selected day! 😢🤷‍♂️");
         }
 
         var ticketPrice = timeSlot.Schedule.Doctor.TicketPrice;
