@@ -12,6 +12,8 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login()
     {
+
+        // TODO : validate user information : user availability
         var now = DateTime.Now;
 
         var claims = new List<Claim>
@@ -27,7 +29,7 @@ public class AuthController : ControllerBase
 
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        var token = new JwtSecurityToken("MyAPI", "MyFrontendApp", claims, now, now.AddHours(1), credentials);
+        var token = new JwtSecurityToken("MyAPI", "MyFrontendApp", claims, now, now.AddDays(1), credentials);
 
         var handler = new JwtSecurityTokenHandler();
         var jwt = handler.WriteToken(token);
