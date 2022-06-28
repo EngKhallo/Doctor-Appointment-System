@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Doctor_Appointment_System.Controllers;
 [Route("api/v1/[controller]")]
 [ApiController]
+[Authorize]
 public class BookingsController : ControllerBase
 {
     private readonly AppointmentsDbContext _context;
@@ -17,7 +18,6 @@ public class BookingsController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
     public async Task<IActionResult> GetAll() // Task = void
     {
         var bookings = await _context.Bookings.ToListAsync();
@@ -31,7 +31,6 @@ public class BookingsController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> Add([FromBody] BookingViewModel ViewModel)
     {
         var timeSlot = await _context.Timeslots
@@ -70,7 +69,7 @@ public class BookingsController : ControllerBase
         {
             AppointmentTime = new DateTime(ViewModel.AppointmentTime.Ticks, DateTimeKind.Utc),
             IsCompleted = false,
-            UserId = 3, // TODO : Get the userId from session(logged in user)
+            UserId = 1, // TODO : Get the userId from session(logged in user)
             CreatedAt = DateTime.UtcNow,
             TransactionId = $"TR{transactionId}",
             PaidAmount = ticketPrice,
