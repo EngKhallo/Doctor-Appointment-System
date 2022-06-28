@@ -18,8 +18,7 @@ public class AuthController : ControllerBase
 
         var claims = new List<Claim>
         {
-            new("exp", "0"),
-            new("sub", "1"),
+            new(JwtRegisteredClaimNames.Sub, "1"), // constant : which means sub
             new("FullName", "User Full Name")
         };
 
