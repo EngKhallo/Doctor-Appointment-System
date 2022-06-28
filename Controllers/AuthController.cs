@@ -1,25 +1,42 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Doctor_Appointment_System.Controllers;
 [Route("api/v1/[controller]")]
 public class AuthController : ControllerBase
 {
+    private readonly AppointmentsDbContext _context;
+
+    public AuthController(AppointmentsDbContext context)
+    {
+        _context = context;
+    }
     // POST /auth/login : Username and password
     [HttpPost("login")]
-    public IActionResult Login()
+    public async Task<IActionResult> Login(string email)
     {
 
-        // TODO : validate user information : user availability
+        // validate user information : user availability
+
+        var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+        if (user is null)
+        {
+            return BadRequest("Invalid Login Attempt");
+        }
+
         var now = DateTime.Now;
 
         var claims = new List<Claim>
         {
-            new(JwtRegisteredClaimNames.Sub, "1"), // constant : which means sub
-            new("FullName", "User Full Name")
+            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()), // constant : which means sub
+            new("FullName", user.FullName),
+            new("gender", user.Gender),
+            new("Email", user.Email),
         };
 
 
