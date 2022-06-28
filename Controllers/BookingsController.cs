@@ -1,4 +1,7 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Data;
+using Doctor_Appointment_System.Helpers;
 using Doctor_Appointment_System.Models;
 using Doctor_Appointment_System.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -63,13 +66,15 @@ public class BookingsController : ControllerBase
 
         // TODO : Add real payment gateway (eDahab, Zaad)
 
+        var userId = User.GetId();
 
+        
         var transactionId = new Random().Next(10_000, 999_999);
         var booking = new Booking
         {
             AppointmentTime = new DateTime(ViewModel.AppointmentTime.Ticks, DateTimeKind.Utc),
             IsCompleted = false,
-            UserId = 1, // TODO : Get the userId from session(logged in user)
+            UserId = userId, // Logged in User
             CreatedAt = DateTime.UtcNow,
             TransactionId = $"TR{transactionId}",
             PaidAmount = ticketPrice,
