@@ -43,7 +43,6 @@ public class DoctorsController : ControllerBase
     [HttpPost]
     public IActionResult Add([FromBody] DoctorViewModel doctorViewModel) // Over-posting attack.
     {
-        var userId = User.GetId();
 
         var doctor = new Doctor
         {
@@ -54,7 +53,7 @@ public class DoctorsController : ControllerBase
             CreatedAt = DateTime.UtcNow,
             Picture = doctorViewModel.Picture,
             TicketPrice = doctorViewModel.TicketPrice,
-            UserId = userId // currently logged in UserId
+            UserId = User.GetId()
         };
         _context.Doctors.Add(doctor);
         _context.SaveChanges();
