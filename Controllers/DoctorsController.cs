@@ -1,4 +1,7 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Data;
+using Doctor_Appointment_System.Helpers;
 using Doctor_Appointment_System.Models;
 using Doctor_Appointment_System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -40,6 +43,8 @@ public class DoctorsController : ControllerBase
     [HttpPost]
     public IActionResult Add([FromBody] DoctorViewModel doctorViewModel) // Over-posting attack.
     {
+        var userId = User.GetId();
+
         var doctor = new Doctor
         {
             Phone = doctorViewModel.Phone,
@@ -49,7 +54,7 @@ public class DoctorsController : ControllerBase
             CreatedAt = DateTime.UtcNow,
             Picture = doctorViewModel.Picture,
             TicketPrice = doctorViewModel.TicketPrice,
-            UserId = 2 // TODO : Use the currently logged in UserId
+            UserId = userId // currently logged in UserId
         };
         _context.Doctors.Add(doctor);
         _context.SaveChanges();
