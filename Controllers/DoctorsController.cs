@@ -22,16 +22,17 @@ public class DoctorsController : ControllerBase
 
     // GET:Doctors
     [HttpGet]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        var doctors = _context.Doctors.Include(d => d.User).ToList();
+        // Todo : Add pagination and filtering
+        var doctors =await _context.Doctors.Include(d => d.User).ToListAsync();
         return Ok(doctors);
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetSingle(int id)
+    public async Task<IActionResult> GetSingle(int id)
     {
-        var doctor = _context.Doctors.Include(d => d.User).SingleOrDefault(d => d.Id == id);
+        var doctor =await _context.Doctors.Include(d => d.User).SingleOrDefaultAsync(d => d.Id == id);
         if (doctor is null)
         {
             return NotFound();
@@ -41,7 +42,7 @@ public class DoctorsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Add([FromBody] DoctorViewModel doctorViewModel) // Over-posting attack.
+    public async Task<IActionResult> Add([FromBody] DoctorViewModel doctorViewModel) // Over-posting attack.
     {
 
         var doctor = new Doctor
@@ -55,8 +56,8 @@ public class DoctorsController : ControllerBase
             TicketPrice = doctorViewModel.TicketPrice,
             UserId = User.GetId()
         };
-        _context.Doctors.Add(doctor);
-        _context.SaveChanges();
+        await _context.Doctors.AddAsync(doctor);
+        await _context.SaveChangesAsync();
 
         return Created("", doctor);
     }
