@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Identity;
 using Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,7 +34,6 @@ builder.Services.AddAuthentication("Bearer") // Token: JWT = Json Web Token
         };
     });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -48,6 +46,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// what is beyond this is called : Middlewares
+
+// Authentication vs Authorization the
+// Authentication : Who are you? -- Login 
+// Authorization : Are you able to do this action? -- Role
 
 app.UseAuthentication();
 
