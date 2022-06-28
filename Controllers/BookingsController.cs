@@ -66,15 +66,14 @@ public class BookingsController : ControllerBase
 
         // TODO : Add real payment gateway (eDahab, Zaad)
 
-        var userId = User.GetId();
 
-        
+
         var transactionId = new Random().Next(10_000, 999_999);
         var booking = new Booking
         {
             AppointmentTime = new DateTime(ViewModel.AppointmentTime.Ticks, DateTimeKind.Utc),
             IsCompleted = false,
-            UserId = userId, // Logged in User
+            UserId = User.GetId(), // Logged in User
             CreatedAt = DateTime.UtcNow,
             TransactionId = $"TR{transactionId}",
             PaidAmount = ticketPrice,
